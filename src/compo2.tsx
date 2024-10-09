@@ -21,7 +21,7 @@ const taskcompo = () => {
             return;
         }
 
-        // Create a form data objsect to be sent via the POST request
+        // Create a forsm data objsect to be sent via the POST request
         const formData = new FormData();
         formData.append("tasktitle", taskTitle);
         formData.append("taskreward", taskReward);
