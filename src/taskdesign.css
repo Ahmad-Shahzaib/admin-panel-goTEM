@@ -1,0 +1,124 @@
+.add-tasks-container {
+    width: 100%;
+    height: 100%;
+    background-color: #ffccd5; /* Whitish-red background */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-tasks-header {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.glass-box {
+    background: rgba(25, 25, 25, 0.829); /* Blackish glass effect */
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border-radius: 12px;
+    width: 80%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+}
+
+.image-upload {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.upload-label {
+    padding: 15px 25px;
+    background-color: #ff4760;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 20px;
+}
+
+.upload-label:hover {
+    background-color: #ff708d; /* Lighter shade for hover */
+}
+
+.image-upload input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+.image-preview {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 2px solid #ff4760; /* Add border to preview for better visibility */
+}
+
+.form-control {
+    position: relative;
+    margin: 20px 0 40px;
+    width: 90%;
+}
+
+.form-control input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #fff solid;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 18px;
+    color: #fff;
+}
+
+.form-control input:focus,
+.form-control input:valid {
+    outline: 0;
+    border-bottom-color: lightblue;
+}
+
+.form-control label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    pointer-events: none;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.form-control label span {
+    display: inline-block;
+    font-size: 18px;
+    min-width: 5px;
+    color: #fff;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus + label span,
+.form-control input:valid + label span {
+    color: lightblue;
+    transform: translateY(-30px);
+}
+  
+.add-button {
+    padding: 15px 40px;
+    font-size: 18px;
+    background-color: #ff4760; /* Bright reddish-pink */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 30px;
+}
+
+.add-button:hover {
+    background-color: #ff708d; /* Lighter shade for hover */
+    transform: scale(1.05); /* Slight scale up on hover */
+}

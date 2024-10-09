@@ -1,0 +1,121 @@
+/* General styling for full width and height with no margins or paddings */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif; /* Modern, clean font */
+  background: #1a1a2e; /* Deep navy blue background for a sleek look */
+  color: #ffffff; /* Light color for general text */
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* Avoids any scrolling */
+}
+
+/* Futuristic Navbar Styles */
+.navbar {
+  width: 10%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1); /* Subtle glass effect */
+  backdrop-filter: blur(10px); /* Clear glass effect */
+  border-right: 1px solid rgba(255, 255, 255, 0.2); /* Subtle bright border */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center items vertically */
+  align-items: center;
+  padding: 20px 0; /* Top and bottom padding */
+  gap: 10px; /* Space between buttons */
+}
+
+.navbar button {
+  width: 90%;
+  padding: 12px;
+  cursor: pointer;
+  border: none;
+  background: black;
+  color: #ffffff;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar button:hover {
+  background-color: rgb(255, 255, 255); /* Slightly opaque white for hover */
+  color: #000000;
+  box-shadow: 0 4px 15px rgba(0, 198, 255, 0.5); /* Glow effect on hover */
+  scale: 1.1;
+}
+
+/* Active button styles to keep the button highlighted when clicked */
+.navbar button.active {
+  background-color: rgb(255, 255, 255); /* Slightly opaque white */
+  color: #000000;
+  box-shadow: 0 4px 15px rgba(0, 198, 255, 0.5); /* Glow effect */
+  scale: 1.1;
+}
+
+/* Main content area styling */
+.main-content {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Padding for content spacing */
+  overflow: auto; /* Allow scrolling on both x and y axes */
+}
+
+/* Styling for Users and Addtasks components */
+.users-component, .add-tasks-component {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  overflow: auto; /* Allow scrolling on both x and y axes for table container */
+}
+
+.users-component {
+  background-color: #0f3460; /* Deep blue for Users */
+}
+
+.add-tasks-component {
+  background-color: #16213e; /* Darker shade for Add Tasks */
+}
+
+/* Responsive Styles for Mobile Devices */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column; /* Stack navbar and content vertically */
+  }
+
+  .navbar {
+    width: 100%;
+    height: auto;
+    flex-direction: row; /* Navbar buttons horizontally aligned */
+    justify-content: space-around; /* Spread buttons evenly */
+    padding: 10px; /* Reduce padding for smaller screens */
+    border-right: none; /* Remove border for horizontal navbar */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Add bottom border */
+  }
+
+  .navbar button {
+    width: auto;
+    flex-grow: 1; /* Make buttons fill available space */
+    padding: 8px;
+    font-size: 14px; /* Reduce font size for smaller screens */
+  }
+
+  .main-content {
+    width: 100%;
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+}

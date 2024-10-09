@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,  // Allows default imports for modules like React
+    "esModuleInterop": true,               // Enables interop between CommonJS and ES Modules
+    "moduleResolution": "node",
+    "jsx": "react-jsx"                     // Supports JSX syntax in TypeScript
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
