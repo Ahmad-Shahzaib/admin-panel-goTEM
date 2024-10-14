@@ -1,19 +1,46 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import './taskdesign.css';
 
+// Define the structure of a Task using an interface
+interface Task {
+    taskid: number;
+    taskimage: string;
+    tasktitle: string;
+    tasklink: string;
+    taskreward: number | string;
+}
+
 const taskcompo = () => {
+    const [tasks, setTasks] = useState<Task[]>([]); // Use Task[] for the tasks array
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [taskLink, setTaskLink] = useState<string>("");
     const [taskTitle, setTaskTitle] = useState<string>("");
     const [taskReward, setTaskReward] = useState<string>("");
     const [message, setMessage] = useState<string>("");
 
+    // Fetch tasks from API when component mounts
+    useEffect(() => {
+        const fetchTasks = async () => {
+            try {
+                const response = await fetch('https://api-dapp.gotem.io/get_user_tasks?userid=1989734047');
+                const data = await response.json();
+                setTasks(data.task_details); // Set the task details array
+            } catch (error) {
+                console.error('Failed to fetch tasks:', error);
+            }
+        };
+
+        fetchTasks();
+    }, []);
+
+    // Handle image selection for adding tasks
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             setSelectedImage(event.target.files[0]);
         }
     };
 
+    // Handle form submission for adding a new task
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         if (!taskTitle || !taskReward || !taskLink || !selectedImage) {
@@ -21,7 +48,6 @@ const taskcompo = () => {
             return;
         }
 
-        // Create a forsm data objsect to be sent via the POST request
         const formData = new FormData();
         formData.append("tasktitle", taskTitle);
         formData.append("taskreward", taskReward);
@@ -50,9 +76,46 @@ const taskcompo = () => {
         }
     };
 
+    // Handle task removal when clicking on a task
+    const handleRemoveTask = async (taskid: number) => { // Explicitly define taskid as number
+        if (window.confirm('Are you sure you want to remove this task?')) {
+            try {
+                const response = await fetch(`https://api-dapp.gotem.io/remove_task?taskid=${taskid}`, {
+                    method: 'DELETE'
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    setTasks(tasks.filter(task => task.taskid !== taskid));
+                    alert('Task removed successfully!');
+                } else {
+                    alert(result.error || 'Failed to remove the task.');
+                }
+            } catch (error) {
+                alert('Error removing task: ' + error);
+                console.error('Error removing task:', error);
+            }
+        }
+    };
+
     return (
         <div className="add-tasks-container">
-            <h1 className="add-tasks-header">Add Tasks</h1>
+            <h1 className="add-tasks-header">Add / Remove Tasks</h1>
+
+            {/* Task removal section */}
+            <div className="task-list">
+                {tasks.map((task) => (
+                    <div key={task.taskid} className="task-card" onClick={() => handleRemoveTask(task.taskid)}>
+                        <img src={task.taskimage} alt={task.tasktitle} className="task-image"/>
+                        <div className="task-info">
+                            <h4>{task.tasktitle}</h4>
+                            <p>{task.tasklink}</p>
+                            <p>Reward: {task.taskreward}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Task addition form */}
             <div className="glass-box">
                 <div className="image-upload">
                     <label htmlFor="file-upload" className="upload-label">

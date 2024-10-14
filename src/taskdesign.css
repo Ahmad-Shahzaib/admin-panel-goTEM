@@ -1,21 +1,26 @@
+/* Container for the entire task management section */
 .add-tasks-container {
     width: 100%;
-    height: 100%;
-    background-color: #ffccd5; /* Whitish-red background */
+    background-color: #ffccd5; /* Soft pink background */
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto; /* Allow vertical scrolling for the entire container */
+    max-height: 100vh; /* Make the container fit within the viewport height */
 }
 
+/* Header styling */
 .add-tasks-header {
     color: #333;
     margin-bottom: 20px;
     font-size: 32px;
+    font-weight: bold;
 }
 
+/* Glass-box for form styling */
 .glass-box {
-    background: rgba(25, 25, 25, 0.829); /* Blackish glass effect */
+    background: rgba(25, 25, 25, 0.829); /* Semi-transparent black */
     backdrop-filter: blur(5px);
     padding: 20px;
     border-radius: 12px;
@@ -23,28 +28,29 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align items to the left */
+    align-items: flex-start;
 }
 
+/* Styling for image upload section */
 .image-upload {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
 }
 
 .upload-label {
-    padding: 15px 25px;
+    padding: 12px 20px;
     background-color: #ff4760;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-right: 20px;
+    transition: background-color 0.3s ease;
+    margin-right: 15px;
 }
 
 .upload-label:hover {
-    background-color: #ff708d; /* Lighter shade for hover */
+    background-color: #ff708d; /* Lighter red on hover */
 }
 
 .image-upload input[type="file"] {
@@ -52,40 +58,40 @@
 }
 
 .image-preview {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: 2px solid #ff4760; /* Add border to preview for better visibility */
+    border-radius: 6px;
+    border: 2px solid #ff4760; /* Border around preview */
 }
 
+/* Form control styling for input fields */
 .form-control {
     position: relative;
-    margin: 20px 0 40px;
-    width: 90%;
+    margin: 15px 0 30px;
+    width: 100%;
 }
 
 .form-control input {
     background-color: transparent;
-    border: 0;
-    border-bottom: 2px #fff solid;
+    border: none;
+    border-bottom: 2px solid #fff;
     display: block;
     width: 100%;
-    padding: 15px 0;
-    font-size: 18px;
+    padding: 10px 0;
+    font-size: 16px;
     color: #fff;
 }
 
 .form-control input:focus,
 .form-control input:valid {
-    outline: 0;
+    outline: none;
     border-bottom-color: lightblue;
 }
 
 .form-control label {
     position: absolute;
-    top: 15px;
+    top: 10px;
     left: 0;
     pointer-events: none;
     color: #ccc;
@@ -94,7 +100,7 @@
 
 .form-control label span {
     display: inline-block;
-    font-size: 18px;
+    font-size: 16px;
     min-width: 5px;
     color: #fff;
     transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -103,22 +109,113 @@
 .form-control input:focus + label span,
 .form-control input:valid + label span {
     color: lightblue;
-    transform: translateY(-30px);
+    transform: translateY(-25px);
 }
-  
+
+/* Button for adding tasks */
 .add-button {
-    padding: 15px 40px;
-    font-size: 18px;
-    background-color: #ff4760; /* Bright reddish-pink */
+    padding: 12px 30px;
+    font-size: 16px;
+    background-color: #ff4760;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .add-button:hover {
-    background-color: #ff708d; /* Lighter shade for hover */
-    transform: scale(1.05); /* Slight scale up on hover */
+    background-color: #ff708d; /* Lighter red on hover */
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Message styling for feedback */
+.feedback-message {
+    color: #fff;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Task cards section */
+.task-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    overflow-y: auto; /* Allow scrolling for the task list if needed */
+}
+
+/* Styling for individual task cards (compact) */
+.task-card {
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px; /* Reduced padding for compactness */
+    width: 220px; /* Maintained reduced width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Image inside the task card */
+.task-image {
+    width: 80%; /* Increased width to better fill the card */
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border: 2px solid #ff4760; /* Border around task image */
+}
+
+/* Information about the task */
+.task-info h4 {
+    font-size: 12px; /* Further reduced to prevent overflow */
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Prevents overflow */
+}
+
+.task-info p {
+    font-size: 10px; /* Reduced font size to prevent overflow */
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%; /* Ensure the paragraph doesn't overflow */
+    word-wrap: break-word; /* Prevent long links from overflowing */
+}
+
+/* Make sure links within the card do not overflow */
+.task-info p a {
+    color: #0073e6; /* Link color */
+    text-decoration: none;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block; /* Ensures link stays inside the p container */
+}
+
+.task-info p a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .glass-box, .task-card {
+        width: 95%; /* Slightly narrower on smaller screens */
+    }
 }
